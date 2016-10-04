@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Allin_Slider>
+      <version>0.1.0</version>
+    </Allin_Slider>
+  </modules>
+  <frontend>
+    <routers>
+      <slider>
+        <use>standard</use>
+          <args>
+            <module>Allin_Slider</module>
+            <frontName>slider</frontName>
+          </args>
+      </slider>
+    </routers>
+		<layout>
+		  <updates>
+			<slider>
+			  <file>slider.xml</file>
+			</slider>
+		  </updates>
+		</layout>
+  </frontend>
+  <global>
+    <helpers>
+      <slider>
+        <class>Allin_Slider_Helper</class>
+      </slider>
+    </helpers>
+	<blocks>
+	  <slider>
+		<class>Allin_Slider_Block</class>
+	  </slider>
+	</blocks>
+	<models>
+	  <slider>
+		<class>Allin_Slider_Model</class>
+		<resourceModel>slider_mysql4</resourceModel>
+	  </slider>
+	  <slider_mysql4>
+		<class>Allin_Slider_Model_Mysql4</class>
+		<entities>		  
+			  <slider>
+				<table>slider</table>
+			  </slider>
+		</entities>
+	  </slider_mysql4>
+	</models>
+	<resources>
+	  <slider_setup>
+		<setup>
+		  <module>Allin_Slider</module>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </slider_setup>
+	  <slider_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </slider_write>
+	  <slider_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </slider_read>
+	</resources>
+  </global>
+  <admin>
+	<routers>
+	  <slider>
+	    <use>admin</use>
+		<args>
+		  <module>Allin_Slider</module>
+		  <frontName>admin_slider</frontName>
+		</args>
+	  </slider>
+	</routers>
+  </admin>
+  <adminhtml>
+	<menu>
+	  <slider module="slider">
+		<title>Slider</title>
+		<sort_order>100</sort_order>
+		<children>
+		  <sliderbackend module="slider">
+			<title>Backend Page Title</title>
+			<sort_order>0</sort_order>
+			<action>admin_slider/adminhtml_sliderbackend</action>
+		  </sliderbackend>
+		  <slider module="slider">
+		    <title>Manage Slider</title>
+			<sort_order>0</sort_order>
+			<action>admin_slider/adminhtml_slider</action>
+		  </slider>
+		</children>
+	  </slider>
+	</menu>
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+		  <children>
+			<slider translate="title" module="slider">
+			  <title>Slider</title>
+			  <sort_order>1000</sort_order>
+			  <children>
+		  <sliderbackend translate="title">
+			<title>Backend Page Title</title>
+		  </sliderbackend>
+		  <slider translate="title">
+			<title>Manage Slider</title>
+			<sort_order>0</sort_order>
+		  </slider>
+			  </children>
+			</slider>
+		  </children>
+		</admin>
+	  </resources>
+	</acl>
+	<layout>
+	  <updates>
+		<slider>
+		  <file>slider.xml</file>
+		</slider>
+	  </updates>
+	</layout>
+  </adminhtml>
+</config> 
